@@ -1,9 +1,9 @@
 {
   "projectName": "CUSTOM",
-  "latestVersionDirectory": "1.0.0",
-  "latestVersionNumber": 1,
-  "currentVersionDirectory": "/interplay_v2/flows/projects/DemoGIt/",
-  "currentVersionNumber": 2,
+  "latestVersionDirectory": "1.0.1",
+  "latestVersionNumber": 2,
+  "currentVersionDirectory": "/interplay_v2/flows/projects/DemoGit2/",
+  "currentVersionNumber": 3,
   "versionList": [
     {
       "versionNumber": 1,
@@ -12,6 +12,18 @@
       "timeStamp": "2022-09-02T06:18:25.864Z",
       "username": "juan@iterate.ai",
       "previousCurrentVersion": null,
+      "listOfNodes": [
+        "node-red/function",
+        "node-red/debug"
+      ]
+    },
+    {
+      "versionNumber": 2,
+      "displayText": "Authentication Deploy",
+      "directoryName": "1.0.1",
+      "timeStamp": "2022-09-02T06:26:29.830Z",
+      "username": "utsav.shah@ajmerainfotech.com",
+      "previousCurrentVersion": 2,
       "listOfNodes": [
         "node-red/function",
         "node-red/debug"
