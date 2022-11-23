@@ -20,6 +20,6 @@ jobs:
     steps:
     - name: logs
       run: |
-        echo {{ toJSON(github) }}
-        echo {{ github.ref_name }}
-        echo {{ github.sha }}
+        echo ${{ toJSON(github) }}
+        echo ${{ github.ref_name }}
+        echo ${{ github.sha }}
