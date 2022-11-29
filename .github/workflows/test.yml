@@ -9,9 +9,9 @@ on:
     branches:
       - master
   workflow_dispatch:    
-  repository_dispatch:
-    types:
-      - webhook-main
+  # repository_dispatch:
+  #   types:
+  #     - webhook-main
 # build process
 jobs:
   build:
