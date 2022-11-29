@@ -4,14 +4,14 @@ name: Site build
 on:
   push:
     branches:
-      - master
+      - stage
   pull_request:
     branches:
-      - master
+      - stage
   workflow_dispatch:    
   repository_dispatch:
     types:
-      - webhook-main
+      - webhook-stage
 # build process
 jobs:
   build:
