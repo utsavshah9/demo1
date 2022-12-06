@@ -12,6 +12,12 @@ on:
   # repository_dispatch:
   #   types:
   #     - webhook-main
+
+# Ensures that only one deploy task per branch/environment will run at a time.
+concurrency:
+  group: ${{ github.ref_name }}
+  cancel-in-progress: true
+  
 # build process
 jobs:
   build:
@@ -21,6 +27,6 @@ jobs:
     steps:
     - name: logs
       run: |
-        echo ${{ toJSON(github) }}
+        sleep 60
         echo ${{ github.ref_name }}
         echo ${{ github.sha }}
