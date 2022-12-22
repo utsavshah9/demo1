@@ -30,10 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo A comment on PR $NUMBER $COMMENT
-        env:
-          NUMBER: ${{ github.event.issue.number }}
-          COMMENT: ${{ github.event.issue.pull_request }}
+          echo ${{ github.event.issue.number }}
+          echo ${{ github.event.issue.pull_request }}
   build:
     name: Build
     runs-on: ubuntu-latest
