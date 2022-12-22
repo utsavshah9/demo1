@@ -8,7 +8,8 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch:    
+  issue_comment:
+      types: [created]
   # repository_dispatch:
   #   types:
   #     - webhook-main
@@ -20,6 +21,15 @@ concurrency:
   
 # build process
 jobs:
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    # if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ github.event.issue.number }}
+          echo ${{ github.event.issue.pull_request }}
   build:
     name: Build
     runs-on: ubuntu-latest
