@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: |
           echo ${{ github.event.issue.number }}
-          echo ${{ fromJson(github) }}
+          echo ${{ github.event.issue.pull_request.url }}
   build:
     name: Build
     runs-on: ubuntu-latest
