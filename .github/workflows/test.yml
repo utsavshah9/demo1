@@ -23,15 +23,11 @@ concurrency:
 jobs:
   pr_commented:
     # This job only runs for pull request comments
-    # comment
     name: PR comment
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.comment.body == 'create preview' }}
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo ${{ github.event.issue.number }}
-          echo ${{ toJson(github) }}
-      - run: echo "$GITHUB_CONTEXT"
+      - run: echo ${{ toJson(github) }}
   build:
     name: Build
     runs-on: ubuntu-latest
