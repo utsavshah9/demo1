@@ -1,7 +1,6 @@
 name: Site build
 
 # workflow triggers
-# comment
 on:
   push:
     branches:
@@ -25,7 +24,7 @@ jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    if: ${{ toJson(github.event.comment.body) == 'create preview' }}
+    if: ${{ github.event.comment.body == 'create preview' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ toJson(github) }}
