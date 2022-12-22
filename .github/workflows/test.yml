@@ -10,7 +10,6 @@ on:
       - master
   issue_comment:
     types: [created]
-    pattern: create pr-preview
   workflow_dispatch:    
   # repository_dispatch:
   #   types:
