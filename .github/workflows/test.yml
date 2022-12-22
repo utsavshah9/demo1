@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: |
           echo ${{ github.event.issue.number }}
-          echo ${{ github.event.issue.pull_request.url }}
+          echo ${{ toJson(github) }}
       - run: echo "$GITHUB_CONTEXT"
   build:
     name: Build
