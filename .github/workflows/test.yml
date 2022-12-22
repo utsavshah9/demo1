@@ -24,7 +24,7 @@ jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    if: ${{ contains(github.event.comment.body, "create preview") }}
+    if: ${{ github.event.comment.body == 'create preview' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ toJson(github) }}
