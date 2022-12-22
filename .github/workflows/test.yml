@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: |
           echo ${{ github.event.issue.number }}
-          echo ${{ toJSON(github) }}
+          echo ${{ fromJson(github) }}
   build:
     name: Build
     runs-on: ubuntu-latest
