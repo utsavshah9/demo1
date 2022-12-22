@@ -9,9 +9,7 @@ on:
     branches:
       - master
   issue_comment:
-  pull_request_review:
-  pull_request_review_comment:
-  workflow_dispatch:    
+      types: [created]
   # repository_dispatch:
   #   types:
   #     - webhook-main
