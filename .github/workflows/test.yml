@@ -1,6 +1,7 @@
 name: Site build
 
 # workflow triggers
+# comment
 on:
   push:
     branches:
@@ -27,7 +28,7 @@ jobs:
     if: ${{ github.event.comment.body == 'create preview' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJson(github) }}
+      - run: echo Preview created
   build:
     name: Build
     runs-on: ubuntu-latest
