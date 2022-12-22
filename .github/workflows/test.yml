@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: |
           echo ${{ github.event.issue.number }}
-          echo ${{ echo ${{ toJSON(github.event.issue.pull_request.id) }}
+          echo ${{ echo ${{ toJSON(github) }}
   build:
     name: Build
     runs-on: ubuntu-latest
