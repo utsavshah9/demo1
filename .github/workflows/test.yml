@@ -11,6 +11,7 @@ on:
       - master
   issue_comment:
       types: [created]
+      pattern: 'create preview'
   # repository_dispatch:
   #   types:
   #     - webhook-main
@@ -25,7 +26,7 @@ jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    if: ${{ github.event.comment.body == 'create preview' }}
+    # if: ${{ github.event.comment.body == 'create preview' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo Preview created
