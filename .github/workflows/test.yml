@@ -35,6 +35,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: detail-logs
+      run: |
+        sleep 10
+        echo ${{ toJson(github.event) }}
+
     - name: logs
       run: |
         sleep 10
