@@ -38,7 +38,7 @@ jobs:
     - name: logs
       run: |
         sleep 10
-        echo ${{ github.event.pull_request.base.ref }}
+        echo ${{ github }}
 
     - name: Add domain name in comment
       uses: actions/github-script@v6
