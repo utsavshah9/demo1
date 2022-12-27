@@ -39,7 +39,7 @@ jobs:
     - name: logs
       run: |
         sleep 10
-        echo ${{ github.event.pull_request.base.ref || github.event.ref_name }}
+        echo ${{ github.event.pull_request.base.ref || github.ref_name }}
 
     - name: detail-logs
       run: |
