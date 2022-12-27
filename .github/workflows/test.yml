@@ -35,16 +35,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: detail-logs
-      run: |
-        sleep 10
-        echo ${{ toJson(github.event) }}
 
     - name: logs
       run: |
         sleep 10
-        echo ${{ toJson(github.event) }}
         echo ${{ github.event.pull_request.base.ref || github.event.ref_name }}
+
+    - name: detail-logs
+      run: |
+        echo ${{ toJson(github.event) }}
 
     - name: Add domain name in comment
       uses: actions/github-script@v6
