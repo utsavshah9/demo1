@@ -20,7 +20,8 @@ on:
 concurrency:
   group: ${{ github.ref_name }}
   cancel-in-progress: true
-  
+
+# comment
 # build process
 jobs:
   pr_commented:
@@ -38,7 +39,7 @@ jobs:
     - name: logs
       run: |
         sleep 10
-        echo ${{ github }}
+        echo ${{ toJSON(github) }}
 
     - name: Add domain name in comment
       uses: actions/github-script@v6
