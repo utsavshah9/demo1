@@ -14,7 +14,6 @@ on:
   # repository_dispatch:
   #   types:
   #     - webhook-main
-  # comment
 
 # Ensures that only one deploy task per branch/environment will run at a time.
 concurrency:
@@ -39,6 +38,7 @@ jobs:
     - name: logs
       run: |
         sleep 10
+        echo ${{ toJson(github.event) }}
         echo ${{ github.event.pull_request.base.ref || github.event.ref_name }}
 
     - name: Add domain name in comment
