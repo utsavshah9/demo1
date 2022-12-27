@@ -1,7 +1,6 @@
 name: Site build
 
 # workflow triggers
-# comment
 on:
   push:
     branches:
