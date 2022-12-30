@@ -32,11 +32,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: context-log
-      run: |
-        echo ${{ toJson(context) }}
-
     - name: Set commit status to pending
       uses: actions/github-script@v3
       with:
