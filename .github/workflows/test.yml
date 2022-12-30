@@ -38,9 +38,11 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           // List check runs for repository
-          const checkRuns = await github.checks.listForRepo({
+          const checkRuns = await github.issues.listForRepo({
             owner: context.repo.owner,
             repo: context.repo.repo,
+            state: 'all',
+            labels: 'check-run'
           })
 
           // Print check run ID for each check run
