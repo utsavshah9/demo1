@@ -38,7 +38,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           // List check runs for repository
-          const checkRuns = await github.checks.listCheckRuns({
+          const checkRuns = await github.checks.listForRepo({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
