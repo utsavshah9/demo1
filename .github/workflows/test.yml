@@ -49,50 +49,11 @@ jobs:
           checkRuns.data.forEach(checkRun => {
             console.log(`Check run ID: ${checkRun.id}`)
           })
-    - name: Set commit status to pending
-      uses: actions/github-script@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          github.repos.createCommitStatus({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            sha: context.sha,
-            state: 'pending',
-            context: 'event listener',
-            description: 'Event listener job'
-          })
 
     - name: logs
       run: |
         sleep 10
         echo ${{ github.event.pull_request.base.ref || github.ref_name }}
-
-    - name: Add domain name in comment
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `This is a comment`
-          })
-
-    - name: Set commit status to success
-      uses: actions/github-script@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          github.repos.createCommitStatus({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            sha: context.sha,
-            state: 'success',
-            context: 'event listener',
-            description: 'Event listener job completed successfully'
-          })      
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
