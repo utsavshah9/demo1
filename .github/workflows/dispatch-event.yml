@@ -36,6 +36,7 @@ jobs:
               title: 'Build in progress',
               summary: 'The build is currently in progress.'
             }
+            pull_requests: [{ number: context.payload.issue.pull_request.number }]
           })
           
 
