@@ -26,8 +26,8 @@ jobs:
 
           // Create check run with status and conclusion
           await github.checks.createCheckRun({
-            owner: context.repository.owner.login,
-            repo: context.repository.name,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
             name: 'Build status',
             head_sha: context.sha,
             status: 'in_progress',
