@@ -15,6 +15,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
 
+          console.log("KK");
           console.log(JSON.stringify(context));
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
