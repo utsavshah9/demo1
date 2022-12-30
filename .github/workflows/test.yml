@@ -59,4 +59,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: logs
-        path: $GITHUB_WORKSPACE/.github/logs/debug.log"
+        path: $GITHUB_WORKSPACE/.github/logs/script.log"
