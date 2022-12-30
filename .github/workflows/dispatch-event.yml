@@ -1,0 +1,25 @@
+name: Dispatch event
+
+on:
+  issue_comment:
+      types: [created]
+      pattern: 'create preview'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dispatch event
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.repos.createDispatchEvent({
+            owner: context.repository.owner.login,
+            repo: context.repository.name,
+            event_type: 'my_custom_event',
+            client_payload: {
+              key1: 'value1',
+              key2: 'value2'
+            }
+          })

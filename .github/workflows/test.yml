@@ -8,12 +8,9 @@ on:
   pull_request:
     branches:
       - master
-  issue_comment:
-      types: [created]
-      pattern: 'create preview'
-  # repository_dispatch:
-  #   types:
-  #     - webhook-main
+  repository_dispatch:
+    types:
+      - my_custom_event
 
 # Ensures that only one deploy task per branch/environment will run at a time.
 concurrency:
@@ -36,6 +33,20 @@ jobs:
 
     steps:
 
+    - name: Set commit status to pending
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.repos.createStatus({
+            owner: context.repository.owner.login,
+            repo: context.repository.name,
+            sha: context.sha,
+            state: 'pending',
+            context: 'event listener',
+            description: 'Event listener job started'
+          })
+
     - name: logs
       run: |
         sleep 10
@@ -56,3 +67,17 @@ jobs:
             repo: context.repo.repo,
             body: `This is a comment`
           })
+
+    - name: Set commit status to success
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.repos.createStatus({
+            owner: context.repository.owner.login,
+            repo: context.repository.name,
+            sha: context.sha,
+            state: 'success',
+            context: 'event listener',
+            description: 'Event listener job completed successfully'
+          })      
