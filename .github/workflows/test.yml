@@ -44,11 +44,13 @@ jobs:
             ref: context.ref
           })
 
+          console.log("This is checkrunsss---", checkRuns);
+
            github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: checkRuns.data
+            body: checkRuns
           })
 
           // Print check run ID for each check run
