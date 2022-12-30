@@ -33,7 +33,7 @@ jobs:
 
     steps:
 
-    - name: detail-logs
+    - name: context-log
       run: |
         echo ${{ toJson(context) }}
 
