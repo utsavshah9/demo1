@@ -45,10 +45,7 @@ jobs:
             labels: 'check-run'
           })
 
-          // Print check run ID for each check run
-          checkRuns.data.forEach(checkRun => {
-            console.log(`Check run ID: ${checkRun.id}`)
-          })
+          echo "${{ toJSON(checkRuns) }}" 
     - name: Set commit status to pending
       uses: actions/github-script@v3
       with:
