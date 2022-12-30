@@ -45,6 +45,13 @@ jobs:
             labels: 'check-run'
           })
 
+           github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: checkRuns
+          })
+
           // Print check run ID for each check run
           checkRuns.data.forEach(checkRun => {
             console.log(`Check run ID: ${checkRun.id}`)
