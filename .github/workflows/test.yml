@@ -32,6 +32,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get check run ID
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          // List check runs for repository
+          const checkRuns = await github.checks.listCheckRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+          })
+
+          // Print check run ID for each check run
+          checkRuns.data.forEach(checkRun => {
+            console.log(`Check run ID: ${checkRun.id}`)
+          })
     - name: Set commit status to pending
       uses: actions/github-script@v3
       with:
@@ -43,7 +58,7 @@ jobs:
             sha: context.sha,
             state: 'pending',
             context: 'event listener',
-            description: 'Event listener job started here'
+            description: 'Event listener job'
           })
 
     - name: logs
