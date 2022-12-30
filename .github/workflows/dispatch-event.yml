@@ -18,8 +18,8 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           github.repos.createDispatchEvent({
-            owner: context.repository.owner.login,
-            repo: context.repository.name,
+            owner: context.repo.owner,
+              repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
               key1: 'value1',
