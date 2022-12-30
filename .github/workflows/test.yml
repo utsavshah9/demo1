@@ -41,11 +41,9 @@ jobs:
           const checkRuns = await github.rest.checks.listForRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: context.ref
+            ref: context.payload.pull_request.head.ref
           })
 
-          console.log(context);
-          console.log(context.payload.pull_request);
           console.log("This is checkrunsss---", checkRuns.data.check_runs);
 
            
