@@ -23,3 +23,20 @@ jobs:
               key2: 'value2'
             }
           })
+
+          // Create check run with status and conclusion
+          await github.checks.createCheckRun({
+            owner: context.repository.owner.login,
+            repo: context.repository.name,
+            name: 'Build status',
+            head_sha: context.sha,
+            status: 'in_progress',
+            conclusion: 'neutral',
+            output: {
+              title: 'Build in progress',
+              summary: 'The build is currently in progress.'
+            }
+          })
+          
+
+
