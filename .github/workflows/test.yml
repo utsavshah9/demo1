@@ -45,6 +45,7 @@ jobs:
           })
 
           console.log(context);
+          console.log(context.payload.pull_request);
           console.log("This is checkrunsss---", checkRuns.data.check_runs);
 
            
