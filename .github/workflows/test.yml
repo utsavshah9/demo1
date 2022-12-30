@@ -44,7 +44,7 @@ jobs:
             ref: context.ref
           })
 
-          console.log("This is checkrunsss---", checkRuns);
+          console.log("This is checkrunsss---", checkRuns.data.check_runs);
 
            
 
