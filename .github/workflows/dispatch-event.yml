@@ -16,9 +16,8 @@ jobs:
         script: |
 
           console.log("KK");
-          console.log(JSON.stringify(context));
+          console.log(context);
 
-          console.log(github);
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
             repo: context.repo.repo,
