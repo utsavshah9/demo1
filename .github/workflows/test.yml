@@ -44,7 +44,7 @@ jobs:
         script: |
           github.repos.createStatus({
             owner: context.repo.owner,
-              repo: context.repo.repo,
+            repo: context.repo.repo,
             sha: context.sha,
             state: 'pending',
             context: 'event listener',
@@ -79,7 +79,7 @@ jobs:
         script: |
           github.repos.createStatus({
             owner: context.repo.owner,
-              repo: context.repo.repo,
+            repo: context.repo.repo,
             sha: context.sha,
             state: 'success',
             context: 'event listener',
