@@ -40,6 +40,8 @@ jobs:
           // List check runs for repository
           
           console.log(JSON.stringify(context));
+
+          // this is a comment
           const checkRuns = await github.rest.checks.listForRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
