@@ -17,13 +17,14 @@ jobs:
 
           console.log("KK");
           console.log(JSON.stringify(context));
+
+          console.log(github);
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
             repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
-              key1: 'value1',
-              key2: 'value2'
+              branchName: context.pull_request.head.ref,
             }
           })
 
