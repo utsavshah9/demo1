@@ -38,6 +38,8 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           // List check runs for repository
+          
+          console.log(JSON.stringify(context));
           const checkRuns = await github.rest.checks.listForRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
@@ -50,7 +52,7 @@ jobs:
             check_suite_id: checkRuns.data.check_runs[0]?.check_suite.id,
           });
 
-           
+          console.log("Done");
 
     - name: logs
       run: |
