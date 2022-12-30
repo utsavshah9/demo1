@@ -9,9 +9,6 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-    - name: context-log
-      run: |
-        echo ${{ toJson(context) }}
     - name: Dispatch event
       uses: actions/github-script@v3
       with:
@@ -19,7 +16,7 @@ jobs:
         script: |
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
-              repo: context.repo.repo,
+            repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
               key1: 'value1',
