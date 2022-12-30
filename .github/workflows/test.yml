@@ -45,7 +45,10 @@ jobs:
             labels: 'check-run'
           })
 
-          echo "${{ toJSON(checkRuns) }}" 
+          // Print check run ID for each check run
+          checkRuns.data.forEach(checkRun => {
+            console.log(`Check run ID: ${checkRun.id}`)
+          })
     - name: Set commit status to pending
       uses: actions/github-script@v3
       with:
@@ -90,3 +93,9 @@ jobs:
             context: 'event listener',
             description: 'Event listener job completed successfully'
           })      
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: /github/home/debug.log      
