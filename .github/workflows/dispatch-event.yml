@@ -17,7 +17,7 @@ jobs:
 
           console.log(context);
           console.log(context.issue);
-          console.log(context.pull_request);
+          console.log(context.issue.pull_request);
           console.log(github);
 
           github.repos.createDispatchEvent({
@@ -25,7 +25,7 @@ jobs:
             repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
-              branchName: context.pull_request.head.ref || context.issue.pull_request.head.ref,
+              branchName: context.issue.pull_request.head.ref,
             }
           })
 
