@@ -51,10 +51,6 @@ jobs:
         sleep 10
         echo ${{ github.event.pull_request.base.ref || github.ref_name }}
 
-    - name: detail-logs
-      run: |
-        echo ${{ toJson(github) }}
-
     - name: Add domain name in comment
       uses: actions/github-script@v6
       with:
