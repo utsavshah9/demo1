@@ -23,7 +23,7 @@ jobs:
             repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
-              branchName: context.pull_request.head.ref,
+              branchName: context.pull_request.head.ref || context.issue.pull_request.head.ref,
             }
           })
 
