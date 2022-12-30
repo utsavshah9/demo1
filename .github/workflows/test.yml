@@ -33,6 +33,10 @@ jobs:
 
     steps:
 
+    - name: detail-logs
+      run: |
+        echo ${{ toJson(context) }}
+
     - name: Set commit status to pending
       uses: actions/github-script@v3
       with:
@@ -44,7 +48,7 @@ jobs:
             sha: context.sha,
             state: 'pending',
             context: 'event listener',
-            description: 'Event listener job started'
+            description: 'Event listener job started here'
           })
 
     - name: logs
