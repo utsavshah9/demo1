@@ -3,7 +3,6 @@ name: Dispatch event
 on:
   issue_comment:
       types: [created]
-      pattern: 'create preview'
 
 jobs:
   dispatch:
