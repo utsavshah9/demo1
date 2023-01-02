@@ -9,32 +9,58 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && github.event.comment.body == 'create preview'
     steps:
-    - name: Dispatch event
-      uses: actions/github-script@v3
+    - name: Get check run ID
+      uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |        
-          try {
-            core.info(`Getting PR`)
-            const pullRequest = await github.pulls.get({
+        script: |
+          core.info(`Getting PR`)
+          const pullRequest = await github.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          })
+            
+          const checkRuns = await github.rest.checks.listForRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: pullRequest.data.head.ref
+          })
+
+          await github.rest.checks.rerequestSuite({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            check_suite_id: checkRuns.data.check_runs[0]?.check_suite.id,
+          });
+
+          checkRuns.data.check_runs.forEach((checkRun) => {
+              github.rest.checks.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.issue.number
+              check_run_id: checkRun.id
             })
+          });
+    # - name: Dispatch event
+    #   uses: actions/github-script@v3
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     script: |        
+    #       try {
+            
 
-            core.info(`PR is ${JSON.stringify(pullRequest)}`);
-            core.info('done');
+    #         core.info(`PR is ${JSON.stringify(pullRequest)}`);
+    #         core.info('done');
 
-            core.info(`Creating dispatch event.`);
-            github.repos.createDispatchEvent({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              event_type: 'my_custom_event',
-              client_payload: {
-                branchName: pullRequest.data.head.ref,
-              }
-            })
-          } catch (err) {
-            core.setFailed(`Request failed with error ${err}`)
-          }
+    #         core.info(`Creating dispatch event.`);
+    #         github.repos.createDispatchEvent({
+    #           owner: context.repo.owner,
+    #           repo: context.repo.repo,
+    #           event_type: 'my_custom_event',
+    #           client_payload: {
+    #             branchName: pullRequest.data.head.ref,
+    #           }
+    #         })
+    #       } catch (err) {
+    #         core.setFailed(`Request failed with error ${err}`)
+    #       }
         
