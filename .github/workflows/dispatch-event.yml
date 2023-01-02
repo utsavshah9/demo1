@@ -40,27 +40,4 @@ jobs:
               check_run_id: checkRun.id
             })
           });
-    # - name: Dispatch event
-    #   uses: actions/github-script@v3
-    #   with:
-    #     github-token: ${{ secrets.GITHUB_TOKEN }}
-    #     script: |        
-    #       try {
-            
-
-    #         core.info(`PR is ${JSON.stringify(pullRequest)}`);
-    #         core.info('done');
-
-    #         core.info(`Creating dispatch event.`);
-    #         github.repos.createDispatchEvent({
-    #           owner: context.repo.owner,
-    #           repo: context.repo.repo,
-    #           event_type: 'my_custom_event',
-    #           client_payload: {
-    #             branchName: pullRequest.data.head.ref,
-    #           }
-    #         })
-    #       } catch (err) {
-    #         core.setFailed(`Request failed with error ${err}`)
-    #       }
-        
+          

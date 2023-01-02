@@ -8,9 +8,6 @@ on:
   pull_request:
     branches:
       - master
-  repository_dispatch:
-    types:
-      - my_custom_event
 
 # Ensures that only one deploy task per branch/environment will run at a time.
 concurrency:
@@ -20,39 +17,16 @@ concurrency:
 # comment
 # build process
 jobs:
-  build:
-    name: Build
+  first:
+    name: First
     runs-on: ubuntu-latest
 
     steps:
-    - name: Get check run ID
-      uses: actions/github-script@v6
-      if: ${{ github.event.client_payload }}
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const checkRuns = await github.rest.checks.listForRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: context.payload.client_payload.branchName
-          })
-
-          await github.rest.checks.rerequestSuite({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            check_suite_id: checkRuns.data.check_runs[0]?.check_suite.id,
-          });
-
-          checkRuns.data.check_runs.forEach((checkRun) => {
-              github.rest.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: checkRun.id
-            })
-          });
+    - name: log
+      run: echo "Hello from first step"
   Second:
     name: Second       
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: echo "Hello world"
+        run: echo "Hello world from second step"
