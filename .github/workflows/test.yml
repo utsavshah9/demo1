@@ -20,13 +20,6 @@ concurrency:
 # comment
 # build process
 jobs:
-  pr_commented:
-    # This job only runs for pull request comments
-    name: PR comment
-    # if: ${{ github.event.comment.body == 'create preview' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Preview created
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -43,6 +36,7 @@ jobs:
             ref: context.payload.client_payload.branchName
           })
 
+          core.info(`Found check runs ${JSON.stringify(checkRuns)}`);
           await github.rest.checks.rerequestSuite({
             owner: context.repo.owner,
             repo: context.repo.repo,
@@ -50,14 +44,3 @@ jobs:
           });
 
           console.log("Done");
-
-    - name: logs
-      run: |
-        sleep 10
-        echo ${{ github.event.pull_request.base.ref || github.ref_name }}
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: logs
-        path: $GITHUB_WORKSPACE/.github/logs/script.log"
