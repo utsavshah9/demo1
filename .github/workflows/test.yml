@@ -40,7 +40,7 @@ jobs:
           const checkRuns = await github.rest.checks.listForRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: context.client_payload.branchName
+            ref: context.payload.client_payload.branchName
           })
 
           await github.rest.checks.rerequestSuite({
