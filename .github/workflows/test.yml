@@ -53,3 +53,9 @@ jobs:
             check_run_id: checkRuns.data.check_runs[0]?.id
           })
           console.log("Done");
+  Second:
+    name: Second       
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello
+        run: echo "Hello world"
