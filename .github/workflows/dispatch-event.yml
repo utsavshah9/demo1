@@ -10,7 +10,7 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     steps:
     - name: log
-      run: echo ${{ toJSON(github.event.issue.pull_request) }}
+      run: echo ${{ toJSON(github.event.issue) }}
     - name: Dispatch event
       uses: actions/github-script@v3
       with:
