@@ -29,7 +29,8 @@ jobs:
               event_type: 'my_custom_event',
               client_payload: {
                 branchName: result.data.head.ref,
-              })
+              }
+            })
           } catch (err) {
             core.setFailed(`Request failed with error ${err}`)
           }
