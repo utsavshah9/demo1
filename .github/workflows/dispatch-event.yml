@@ -7,15 +7,19 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }}
     steps:
     - name: Dispatch event
       uses: actions/github-script@v3
+      env:
+        test: ${{ github.event.issue.pull_request }}
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
 
           console.log("issue pr",context.issue.pull_request);
           console.log("pr head ref",context.issue.pull_request.head.ref);
+          console.log("TEST");
 
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
@@ -40,6 +44,3 @@ jobs:
             },
             pull_requests: [{ number: context.payload.issue.pull_request.number }]
           })
-          
-
-
