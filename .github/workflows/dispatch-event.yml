@@ -23,7 +23,7 @@ jobs:
             core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
             try {
               const result = await github.pulls.get(request)
-              core.info(`result data is ${result}`);
+              core.info(`result data is ${JSON.stringify(result)}`);
               return result.data
             } catch (err) {
               core.setFailed(`Request failed with error ${err}`)
@@ -34,7 +34,7 @@ jobs:
             repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
-              branchName: process.env.BRANCH_NAME,
+              branchName: "demo1",
             }
           })
 
