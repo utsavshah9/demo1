@@ -10,9 +10,17 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     steps:
     - name: log
-      run: echo ${{ toJSON(github.event.issue) }}
+      run: echo ${{ toJSON(github.event.comment) }}
+    - name: Get Branch name
+      id: branchName
+      run: |
+        echo ::set-output name=branch::$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
+      env:
+        PR_COMMENT: ${{ github.event.comment.body }}
     - name: Dispatch event
       uses: actions/github-script@v3
+      env:
+        BRANCH_NAME: ${{ steps.branchName.outputs.branch }}
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
@@ -26,7 +34,7 @@ jobs:
             repo: context.repo.repo,
             event_type: 'my_custom_event',
             client_payload: {
-              branchName: context.issue.pull_request.head.ref,
+              branchName: process.env.BRANCH_NAME,
             }
           })
 
