@@ -9,14 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request }}
     steps:
-    - name: log
-      run: echo ${{ toJSON(github.event.comment) }}
-    - name: Get Branch name
-      id: branchName
-      run: |
-        echo ::set-output name=branch::$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
-      env:
-        PR_COMMENT: ${{ github.event.comment.body }}
     - name: Dispatch event
       uses: actions/github-script@v3
       env:
@@ -28,6 +20,20 @@ jobs:
           console.log("issue pr",context.issue.pull_request);
           console.log("pr head ref",context.issue.pull_request.head.ref);
           console.log("TEST");
+
+          const request = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            }
+            core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
+            try {
+              const result = await github.pulls.get(request)
+              core.info(`result data is ${result}`);
+              return result.data
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`)
+            }
 
           github.repos.createDispatchEvent({
             owner: context.repo.owner,
