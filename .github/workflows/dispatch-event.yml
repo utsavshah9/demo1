@@ -3,12 +3,11 @@ name: Dispatch event
 on:
   issue_comment:
     types: [created]
-    pattern: 'create preview'
 
 jobs:
   dispatch:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    if: github.event.issue.pull_request && github.event.comment.body == 'create preview'
     steps:
     - name: Dispatch event
       uses: actions/github-script@v3
@@ -17,11 +16,14 @@ jobs:
         script: |        
           try {
             core.info(`Getting PR`)
-            const result = await github.pulls.get({
+            const pullRequest = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number
             })
+
+            core.info(`PR is ${JSON.stringify(pullRequest)}`);
+            core.info('done');
 
             core.info(`Creating dispatch event.`);
             github.repos.createDispatchEvent({
@@ -29,7 +31,7 @@ jobs:
               repo: context.repo.repo,
               event_type: 'my_custom_event',
               client_payload: {
-                branchName: result.data.head.ref,
+                branchName: pullRequest.data.head.ref,
               }
             })
           } catch (err) {
