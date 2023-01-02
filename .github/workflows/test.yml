@@ -27,6 +27,7 @@ jobs:
     steps:
     - name: Get check run ID
       uses: actions/github-script@v6
+      if: ${{ github.event.client_payload }}
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
