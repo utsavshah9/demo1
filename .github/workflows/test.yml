@@ -40,10 +40,15 @@ jobs:
           })
 
           core.info(`Found check runs ${JSON.stringify(checkRuns)}`);
-          await github.rest.checks.rerequestRun({
+          const reRequestedSuite = await github.rest.checks.rerequestSuite({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            check_run_id: checkRuns.data.check_runs[0]?.id,
+            check_suite_id: checkRuns.data.check_runs[0]?.check_suite.id,
           });
 
+          rest.checks.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            check_run_id: checkRuns.data.check_runs[0]?.id
+          )}
           console.log("Done");
