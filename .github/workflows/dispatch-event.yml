@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request }}
     steps:
+    - name: log
+      run: echo ${{ toJSON(github.event.issue.pull_request) }}
     - name: Dispatch event
       uses: actions/github-script@v3
-      env:
-        test: ${{ github.event.issue.pull_request }}
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
