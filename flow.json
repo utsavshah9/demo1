@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "ea90b844.7dfb18",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4775e2e4.b7054c",
         "type": "function",
         "z": "2c35da0b.b48b66",
@@ -36,6 +43,67 @@
         "complete": "false",
         "x": 600,
         "y": 260,
+        "wires": []
+    },
+    {
+        "id": "feb05054.a8ab8",
+        "type": "console",
+        "z": "ea90b844.7dfb18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 840,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1cd539b9.0f7726",
+        "type": "http in",
+        "z": "ea90b844.7dfb18",
+        "name": "",
+        "url": "/demo1",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "dd3ac27e.e27a8"
+            ]
+        ]
+    },
+    {
+        "id": "dd3ac27e.e27a8",
+        "type": "function",
+        "z": "ea90b844.7dfb18",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\nmsg.payload = \"This is a demo1 payload\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "feb05054.a8ab8",
+                "8f7b5e3f.59e43"
+            ]
+        ]
+    },
+    {
+        "id": "8f7b5e3f.59e43",
+        "type": "http response",
+        "z": "ea90b844.7dfb18",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 800,
+        "y": 380,
         "wires": []
     }
 ]
