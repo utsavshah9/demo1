@@ -258,5 +258,37 @@
         "x": 610,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "987dded2.77458",
+        "type": "function",
+        "z": "32efe41c.3ff34c",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\n// new\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 390,
+        "y": 400,
+        "wires": [
+            [
+                "1e2ffef6.5f65c1"
+            ]
+        ]
+    },
+    {
+        "id": "1e2ffef6.5f65c1",
+        "type": "console",
+        "z": "32efe41c.3ff34c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 380,
+        "wires": []
     }
 ]
