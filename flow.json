@@ -21,6 +21,13 @@
         "info": ""
     },
     {
+        "id": "7e0d875.d5dda78",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "afde7664.9b6ca8",
         "type": "http in",
         "z": 0,
@@ -289,6 +296,84 @@
         "complete": "false",
         "x": 650,
         "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b31a50e7.1c4b",
+        "type": "function",
+        "z": "2fe0688a.d01988",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\n// new\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "903104d.29394f8"
+            ]
+        ]
+    },
+    {
+        "id": "903104d.29394f8",
+        "type": "console",
+        "z": "2fe0688a.d01988",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7297b106.8aa82",
+        "type": "http in",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "url": "/demo2",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "1f2590d5.86606f"
+            ]
+        ]
+    },
+    {
+        "id": "1f2590d5.86606f",
+        "type": "function",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\nmsg.payload = \"This is a demo2 payload\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 920,
+        "y": 260,
+        "wires": [
+            [
+                "621ffa1f.f9ba24"
+            ]
+        ]
+    },
+    {
+        "id": "621ffa1f.f9ba24",
+        "type": "http response",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1240,
+        "y": 360,
         "wires": []
     }
 ]
