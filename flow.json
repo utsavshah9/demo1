@@ -121,8 +121,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 540,
-        "y": 260,
+        "x": 220,
+        "y": 240,
         "wires": [
             [
                 "a6b14b45.1ba638"
@@ -195,5 +195,19 @@
                 "1e9784ba.6d1a0b"
             ]
         ]
+    },
+    {
+        "id": "d8212871.b48568",
+        "type": "console",
+        "z": "2fe0688a.d01988",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 400,
+        "y": 340,
+        "wires": []
     }
 ]
