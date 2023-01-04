@@ -71,7 +71,7 @@
         "type": "function",
         "z": "c5b8f107.d8216",
         "name": "",
-        "func": "var require = context.global.get('require'); \n\nreturn msg;",
+        "func": "var require = context.global.get('require'); \n\n\n// old\nreturn msg;",
         "outputs": 1,
         "timeout": 10000,
         "newThread": false,
@@ -208,6 +208,55 @@
         "complete": "false",
         "x": 400,
         "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e7fa11ef.1afd4",
+        "type": "http request",
+        "z": "2fe0688a.d01988",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "shouldUnZip": true,
+        "url": "",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "d8212871.b48568"
+            ]
+        ]
+    },
+    {
+        "id": "d06a5769.4dec98",
+        "type": "function",
+        "z": "c5b8f107.d8216",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\n// new\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "d8019269.89b48"
+            ]
+        ]
+    },
+    {
+        "id": "d8019269.89b48",
+        "type": "console",
+        "z": "c5b8f107.d8216",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 460,
         "wires": []
     }
 ]

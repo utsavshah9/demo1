@@ -1,5 +1,5 @@
 var require = context.global.get('require'); 
 
 
-// old
+// new
 return msg;
