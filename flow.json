@@ -375,5 +375,51 @@
         "x": 1240,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "f7a2514e.8eb14",
+        "type": "http in",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "url": "/demo3",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 460,
+        "wires": [
+            [
+                "7d08da7b.0a1b24"
+            ]
+        ]
+    },
+    {
+        "id": "7d08da7b.0a1b24",
+        "type": "function",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "func": "var require = context.global.get('require'); \n\n\nmsg.payload = \"This is a demo2 payload\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 860,
+        "y": 480,
+        "wires": [
+            [
+                "31273177.ead6de"
+            ]
+        ]
+    },
+    {
+        "id": "31273177.ead6de",
+        "type": "http response",
+        "z": "7e0d875.d5dda78",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1180,
+        "y": 580,
+        "wires": []
     }
 ]
