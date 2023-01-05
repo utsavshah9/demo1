@@ -28,6 +28,13 @@
         "info": ""
     },
     {
+        "id": "72e2c685.c6f618",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "afde7664.9b6ca8",
         "type": "http in",
         "z": 0,
@@ -421,5 +428,57 @@
         "x": 1180,
         "y": 580,
         "wires": []
+    },
+    {
+        "id": "a37d12f7.cc80a",
+        "type": "console",
+        "z": "72e2c685.c6f618",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 710,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c3733994.895ec8",
+        "type": "inject",
+        "z": "72e2c685.c6f618",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "2305be86.f445e2"
+            ]
+        ]
+    },
+    {
+        "id": "2305be86.f445e2",
+        "type": "function",
+        "z": "72e2c685.c6f618",
+        "name": "",
+        "func": "var require = context.global.get('require'); \nnode.warn(\"Here it is\");\nmsg.payload = \"test 2\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 10000,
+        "newThread": false,
+        "noerr": 0,
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "a37d12f7.cc80a"
+            ]
+        ]
     }
 ]
