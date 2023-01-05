@@ -1,6 +1,6 @@
 var require = context.global.get('require'); 
 
 
-node.warn("Hello this is a log.");
+node.warn("I am here");
 msg.payload = "HI parth";
 return msg;
