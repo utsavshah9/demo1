@@ -177,7 +177,7 @@
         "type": "function",
         "z": "32efe41c.3ff34c",
         "name": "",
-        "func": "var require = context.global.get('require'); \n\n\nmsg.payload = \"HI parth\";\nreturn msg;",
+        "func": "var require = context.global.get('require'); \n\n\nnode.warn(\"Hello this is a log.\");\nmsg.payload = \"HI parth\";\nreturn msg;",
         "outputs": 1,
         "timeout": 10000,
         "newThread": false,
