@@ -12,7 +12,7 @@ on:
       - created
 
 env:
-  PR_NUMBER: pr-${{ github.event.number }}
+  PR_NUMBER: pr-${{ github.event.number || github.event.issue.number }}
 
 concurrency:
   group: pr-preview-${{ github.event.number || github.event.issue.number }}
@@ -27,9 +27,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo "$GITHUB_CONTEXT"
-          echo ${{ github.event.action == 'opened' }} || ${{ github.event.action == 'opened' && contains(github.event.comment.body, 'redeploy preview env') }}
-          echo ${{ github.event.action == 'synchronize' }} && ${{ !contains(github.event.comment.body, 'redeploy preview env') }}
+            echo ${{ github.event.action }}
+            echo ${{ github.event.comment.body }}
+            echo "$GITHUB_CONTEXT"
   Build-image:
     name: Build preview
     runs-on: ubuntu-latest
