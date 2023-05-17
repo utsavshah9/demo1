@@ -30,7 +30,6 @@ jobs:
             echo ${{ github.event.action }}
             echo ${{ github.event.comment.body }}
             echo ${{ contains(github.event.comment.body, 'redeploy preview env') }}
-            echo "$GITHUB_CONTEXT"
   Build-image:
     name: Build preview
     runs-on: ubuntu-latest
