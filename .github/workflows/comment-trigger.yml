@@ -1,8 +1,22 @@
-name: Re-run the action
+name: Create Preview Environment
 
 on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - develop
   issue_comment:
-    types: [created]
+    types:
+      - created
+
+env:
+  PR_NUMBER: pr-${{ github.event.number }}
+
+concurrency:
+  group: pr-preview-${{ github.event.number || github.event.issue.number }}
+  cancel-in-progress: false
 
 jobs:
   printJob:
@@ -14,3 +28,33 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
+  Build-image:
+    name: Build preview
+    runs-on: ubuntu-latest
+    needs: printJob
+    steps:
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        run: |
+          echo "Build, tag, and push image to Amazon ECR"
+
+  Deploy-preview:
+    name: Deploy preview
+    if: ${{ github.event.action == 'opened' }} || ${{ github.event.action == 'opened' && contains(github.event.comment.body, 'redeploy preview env') }}
+    runs-on: ubuntu-latest
+    needs: Build-image
+    steps:
+      - name: Get cloudformation output parameters
+        id: get-outputs
+        run: echo "Deploy Preview"
+
+  Update-preview:
+    name: Update preview
+    if: ${{ github.event.action == 'synchronize' }} && ${{ !contains(github.event.comment.body, 'redeploy preview env') }}
+    runs-on: ubuntu-latest
+    environment: "${{ github.event.pull_request.base.ref }}-preview"
+    needs: Build-image
+    steps:
+      - name: Get cloudformation output parameters
+        id: get-load-balancer-url
+        run: echo "Update Preview"
