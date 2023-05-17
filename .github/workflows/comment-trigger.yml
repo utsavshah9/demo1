@@ -43,7 +43,7 @@ jobs:
 
   Deploy-preview:
     name: Deploy preview
-    if: ${{ github.event.action == 'opened' }}
+    if: ${{ github.event.action == 'opened' || contains(github.event.comment.body, 'redeploy preview env') }}
     runs-on: ubuntu-latest
     needs: Build-image
     steps:
